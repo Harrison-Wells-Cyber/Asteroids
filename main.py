@@ -53,7 +53,7 @@ def main():
                 bool1 = CircleShape.collides_with(rock, bullet)
                 if bool1 == True:
                     log_event("asteroid_shot")
-                    rock.kill()
+                    rock.split()
                     bullet.kill()
         pygame.display.flip()
         dt = clock.tick(60) / 1000
