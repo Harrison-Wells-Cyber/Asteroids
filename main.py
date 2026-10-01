@@ -1,4 +1,5 @@
 import pygame
+from circleshape import CircleShape
 from constants import SCREEN_HEIGHT
 from constants import SCREEN_WIDTH
 from logger import log_state
@@ -9,6 +10,8 @@ from constants import ASTEROID_MAX_RADIUS
 from constants import ASTEROID_MIN_RADIUS
 from constants import ASTEROID_SPAWN_RATE_SECONDS
 from asteroidfield import AsteroidField
+from logger import log_event
+import sys
 
 def main():
     pygame.init()
@@ -35,6 +38,12 @@ def main():
         for thing in drawable:
             thing.draw(screen)
         updatable.update(dt)
+        for rock in asteroids:
+            bool = CircleShape.collides_with(rock, player1)
+            if bool == True:
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
