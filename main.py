@@ -48,6 +48,13 @@ def main():
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+        for rock in asteroids:
+            for bullet in shots:
+                bool1 = CircleShape.collides_with(rock, bullet)
+                if bool1 == True:
+                    log_event("asteroid_shot")
+                    rock.kill()
+                    bullet.kill()
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
